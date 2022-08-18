@@ -6,35 +6,28 @@ import com.ejemplo.SpringBoot.service.IPersonaService;
 //import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
+@CrossOrigin(origins = "+")
+
 public class Controller {
   
     @Autowired
     private IPersonaService persoServ;
-   /* List<Persona> listaPersonas=new ArrayList();
-    
-    @GetMapping ("/hola/{nombre}/{apellido}/{edad}")
-    public String decirHola(@PathVariable String nombre,@PathVariable String apellido,@PathVariable int edad){
-        return "Hola Mundo " + nombre + " apellido:"+ apellido + " edad: "+ edad;
-    
-}
-    @GetMapping("/chau")
-    public String decirChau(@RequestParam String nombre,@RequestParam String apellido ,@RequestParam int edad ){
-        return "Chau mundo " + nombre + " apellido : "+ apellido + " Edad: "+edad;
-    }*/
-    
+  
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/new/persona")
     public void agregarPersona(@RequestBody Persona pers){
       persoServ.crearPersona(pers);
@@ -47,11 +40,12 @@ public class Controller {
       return persoServ.verPersonas();
         // return listaPersonas;
     }
+      @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void borrarPersona(@PathVariable Long id){
         persoServ.borrarPersona(id);
     }
-    
+      @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("personas/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
             @RequestParam("nombre") String nuevoNombre,
@@ -67,6 +61,6 @@ public class Controller {
     
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
-        return persoServ.buscarPersona((long)1);
+        return persoServ.buscarPersona((long)2);
     }
 }
