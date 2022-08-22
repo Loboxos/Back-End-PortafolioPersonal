@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-@CrossOrigin(origins = "+")
+@CrossOrigin(origins = "http://localhost:4200")
 
 public class Controller {
   
@@ -61,6 +61,6 @@ public class Controller {
     
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
-        return persoServ.buscarPersona((long)2);
+        return persoServ.buscarPersona((long)4);
     }
 }
