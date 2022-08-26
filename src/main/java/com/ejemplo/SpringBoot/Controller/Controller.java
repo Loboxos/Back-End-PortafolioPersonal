@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https:frontendprueba0912.web.app")
 
 public class Controller {
   
@@ -46,7 +46,7 @@ public class Controller {
         persoServ.borrarPersona(id);
     }
       @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("personas/editar/{id}")
+    @PutMapping("/personas/editar/{id}")
     public Persona editPersona(@PathVariable Long id,
             @RequestParam("nombre") String nuevoNombre,
             @RequestParam("apellido") String nuevoApellido){
