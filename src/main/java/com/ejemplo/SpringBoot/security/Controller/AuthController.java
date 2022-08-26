@@ -44,7 +44,7 @@ public class AuthController {
      RolService rolService;
      @Autowired
      JwtProvider jwtProvider;
-     @CrossOrigin(origins = "https://frontendprueba0912.web.app")
+     
      @PostMapping("/nuevo")
       public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
