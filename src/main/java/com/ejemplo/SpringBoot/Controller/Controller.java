@@ -58,7 +58,7 @@ public class Controller {
         return persona;
     }
     
-    @GetMapping("personas/traer/perfil")
+    @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
         return persoServ.buscarPersona((long)4);
     }
