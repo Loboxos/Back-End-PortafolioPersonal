@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "+")
+@CrossOrigin(origins = "https://frontendprueba0912.web.app")
 public class Controller {
   
     @Autowired
