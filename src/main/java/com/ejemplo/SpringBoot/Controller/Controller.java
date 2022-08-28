@@ -33,6 +33,7 @@ public class Controller {
     public List<Persona>verPersonas(){
       return persoServ.verPersonas();
     }
+   
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void borrarPersona(@PathVariable Long id){
@@ -53,6 +54,6 @@ public class Controller {
     }
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
-        return persoServ.buscarPersona((long)4);
+        return persoServ.buscarPersona((long)1);
     }
 }
