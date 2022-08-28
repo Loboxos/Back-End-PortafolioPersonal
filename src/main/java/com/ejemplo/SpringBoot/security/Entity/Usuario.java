@@ -1,7 +1,7 @@
 
 package com.ejemplo.SpringBoot.security.Entity;
 
-import com.sun.istack.NotNull;
+//import com.sun.istack.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
