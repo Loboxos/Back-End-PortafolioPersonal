@@ -38,7 +38,7 @@ public class ControllerExp {
         if(StringUtils.isBlank(dtoexp.getNombreE()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"),HttpStatus.BAD_REQUEST);
     if (sExperiencia.existsByNombreE(dtoexp.getNombreE()))
-        return new ResponseEntity(new Mensaje("Esa Experiencia existe"), HttpStatus.BAD_REQUEST);
+    return new ResponseEntity(new Mensaje("Esa Experiencia existe"), HttpStatus.BAD_REQUEST);
      Experiencia experiencia = new Experiencia(dtoexp.getNombreE(),dtoexp.getFechaE(),dtoexp.getDescripcionE());
      sExperiencia.save(experiencia);
      return new ResponseEntity(new Mensaje("Experiencia agregada"),HttpStatus.OK);
