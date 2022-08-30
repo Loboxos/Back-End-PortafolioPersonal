@@ -28,9 +28,9 @@ public class ControllerProy {
    ProyectosService sProyectos;
    
     @GetMapping("/lista")
-    public ResponseEntity<List<Proyectos>> list(){
+    public ResponseEntity<List<Proyectos>> list (){
         List<Proyectos> list = sProyectos.list();
-        return new ResponseEntity(list, HttpStatus.OK);
+        return new ResponseEntity(list,HttpStatus.OK);
     }
  @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoProyectos dtoproy){
