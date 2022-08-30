@@ -38,7 +38,7 @@ public class ControllerProy {
         if(StringUtils.isBlank(dtoproyectos.getNombreP())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-        if(sProyectos.existsByNombreE(dtoproyectos.getNombreP())){
+        if(sProyectos.existsByNombreP(dtoproyectos.getNombreP())){
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         
@@ -64,7 +64,7 @@ public class ControllerProy {
         if(!sProyectos.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.NOT_FOUND);
         }
-        if(sProyectos.existsByNombreE(dtoproyectos.getNombreP()) && sProyectos.getByNmbreE(dtoproyectos.getNombreP()).get().getId() != id){
+        if(sProyectos.existsByNombreP(dtoproyectos.getNombreP()) && sProyectos.getByNombreP(dtoproyectos.getNombreP()).get().getId() != id){
             return new ResponseEntity(new Mensaje("Ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         }
         if(StringUtils.isBlank(dtoproyectos.getNombreP())){

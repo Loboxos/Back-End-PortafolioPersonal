@@ -23,8 +23,8 @@ ProyectosRepository rProyectos;
         return rProyectos.findById(id);
     }
     
-    public Optional<Proyectos> getByNmbreE(String nombreE){
-        return rProyectos.findByNombreE(nombreE);
+    public Optional<Proyectos> getByNombreP(String nombreP){
+        return rProyectos.findByNombreP(nombreP);
     }
     
     public void save(Proyectos proyectos){
@@ -39,8 +39,8 @@ ProyectosRepository rProyectos;
         return rProyectos.existsById(id);
     }
     
-    public boolean existsByNombreE(String nombreE){
-        return rProyectos.existsByNombreE(nombreE);
+    public boolean existsByNombreP(String nombreP){
+        return rProyectos.existsByNombreP(nombreP);
     }
     
 }
