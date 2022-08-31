@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/personas")
 @CrossOrigin(origins = "https://frontendprueba0912.web.app")
 public class Controller {
   
@@ -55,7 +54,7 @@ public class Controller {
         persoServ.crearPersona(persona);
         return persona;
     }
-    @GetMapping("/traer/perfil")
+    @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
         return persoServ.buscarPersona((long)1);
     }
