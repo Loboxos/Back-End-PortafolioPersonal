@@ -56,21 +56,13 @@ public class Controller {
         
         return new ResponseEntity(new Mensaje("Foto actualizada"), HttpStatus.OK);
     }
-    
-    /*@PutMapping("/editar/{id}")
-    public Persona editPersona(@PathVariable Long id,
-            @RequestParam("nombre") String nuevoNombre,
-            @RequestParam("apellido") String nuevoApellido,
-            @RequestParam("img") String nuevoImg){
+      @GetMapping("/detail/{id}")
+    public ResponseEntity<Persona> getById(@PathVariable("id")Long id){
         
         Persona persona = persoServ.buscarPersona(id);
-        persona.setNombre(nuevoNombre);
-        persona.setApellido(nuevoApellido);
-        persona.setImg(nuevoImg);
-        
-        persoServ.crearPersona(persona);
-        return persona;
-    }*/
+        return new ResponseEntity(persona, HttpStatus.OK);
+    }
+    
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
         return persoServ.buscarPersona((long)1);
