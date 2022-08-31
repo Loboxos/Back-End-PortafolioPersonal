@@ -45,11 +45,12 @@ public class Controller {
         List<Persona> list = persoServ.list();
         return new ResponseEntity(list,HttpStatus.OK);
     }
-   
+   @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void borrarPersona(@PathVariable int id){
         persoServ.delete(id);
     }
+    @PreAuthorize("hasRole('ADMIN')")
         @PutMapping("/personas/editar/{id}")
     public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody dtoPersona dtopersona){
           if(!persoServ.existsById(id)){
