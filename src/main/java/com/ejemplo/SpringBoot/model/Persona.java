@@ -16,13 +16,13 @@ import lombok.Setter;
 public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    
     private Long id;
     @NotNull
     private String nombre;
     @NotNull
     private String apellido;
     @NotNull
-    @Size(min = 1, max = 50, message = "no cumple con la longitud")
     private String img;
 
     public Persona(){

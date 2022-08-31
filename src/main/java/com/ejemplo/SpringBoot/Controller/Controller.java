@@ -44,12 +44,12 @@ public class Controller {
     public Persona editPersona(@PathVariable Long id,
             @RequestParam("nombre") String nuevoNombre,
             @RequestParam("apellido") String nuevoApellido,
-            @RequestParam("img") String nuevoimg){
+            @RequestParam("img") String nuevoImg){
         
         Persona persona = persoServ.buscarPersona(id);
         persona.setNombre(nuevoNombre);
         persona.setApellido(nuevoApellido);
-        persona.setImg(nuevoimg);
+        persona.setImg(nuevoImg);
         
         persoServ.crearPersona(persona);
         return persona;
