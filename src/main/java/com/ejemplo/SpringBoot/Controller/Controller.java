@@ -40,7 +40,7 @@ public class Controller {
     public List<Persona>verPersonas(){
       return persoServ.list();
     }
-      @GetMapping("/lista")
+      @GetMapping("personas/lista")
     public ResponseEntity<List<Persona>> list (){
         List<Persona> list = persoServ.list();
         return new ResponseEntity(list,HttpStatus.OK);
