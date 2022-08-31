@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/skills")
 @CrossOrigin(origins = "https://frontendprueba0912.web.app")
-
 public class ControllerSkills {
        @Autowired
     SkillsService skillsService;
@@ -53,12 +52,13 @@ public class ControllerSkills {
     
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoSkills dtoski){
-        if(StringUtils.isBlank(dtoski.getNombreSkill()))
+        if(StringUtils.isBlank(dtoski.getNombreSkill())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(skillsService.existsByNombreSkill(dtoski.getNombreSkill()))
+        }
+            if(skillsService.existsByNombreSkill(dtoski.getNombreSkill())){
             return new ResponseEntity(new Mensaje("Habilidad existente"), HttpStatus.BAD_REQUEST);
-        
-        Skills skills = new Skills(dtoski.getNombreSkill(), dtoski.getPorcentaje());
+    }
+        Skills skills = new Skills(dtoski.getNombreSkill(),dtoski.getPorcentaje());
         skillsService.save(skills);
         
         return new ResponseEntity(new Mensaje("Habilidad agregada"), HttpStatus.OK);
@@ -67,15 +67,17 @@ public class ControllerSkills {
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoSkills dtoski){
         //Validar ID
-        if(!skillsService.existsById(id))
+        if(!skillsService.existsById(id)){
             return new ResponseEntity(new Mensaje("ID inexistente"), HttpStatus.BAD_REQUEST);
         //Comparar nombre Habilidad
-        if(skillsService.existsByNombreSkill(dtoski.getNombreSkill()) && skillsService.getByNombreSkill(dtoski.getNombreSkill()).get().getId() != id)
+        }
+        if(skillsService.existsByNombreSkill(dtoski.getNombreSkill()) && skillsService.getByNombreSkill(dtoski.getNombreSkill()).get().getId() != id){
             return new ResponseEntity(new Mensaje("Habilidad existente"), HttpStatus.BAD_REQUEST);
-        //No puede estar vacio    
-        if(StringUtils.isBlank(dtoski.getNombreSkill()))
+        //No puede estar vacio 
+        }
+        if(StringUtils.isBlank(dtoski.getNombreSkill())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        
+        }
         Skills skills = skillsService.getOne(id).get();
         skills.setNombreSkill(dtoski.getNombreSkill());
         skills.setPorcentaje(dtoski.getPorcentaje());
