@@ -4,32 +4,44 @@ package com.ejemplo.SpringBoot.service;
 import com.ejemplo.SpringBoot.model.Persona;
 import com.ejemplo.SpringBoot.repository.PersonaRepository;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonaService implements IPersonaService{
+@Transactional
+public class PersonaService {
 
     @Autowired PersonaRepository persoRepo;
     
-    @Override
-    public List<Persona> verPersonas() {
+  
+    public List<Persona> list() {
        return persoRepo.findAll();
     }
-
-    @Override
+ public Optional<Persona> getOne(int id){
+        return persoRepo.findById(id);
+    }
+     public Optional<Persona> getByNmbre(String nombre){
+        return persoRepo.findByNombre(nombre);
+    }
+    
     public void crearPersona(Persona per) {
        persoRepo.save(per);
     }
-    
-
-    @Override
-    public void borrarPersona(Long id) {
+    public void delete(int id){
         persoRepo.deleteById(id);
     }
+    
+  public boolean existsById(int id){
+        return persoRepo.existsById(id);
+    }
+    
+    public boolean existsByNombreE(String nombre){
+        return persoRepo.existsByNombre(nombre);
+    }
 
-    @Override
-    public Persona buscarPersona(Long id) {
+    public Persona buscarPersona(int id) {
      return persoRepo.findById(id).orElse(null);
     }
     
