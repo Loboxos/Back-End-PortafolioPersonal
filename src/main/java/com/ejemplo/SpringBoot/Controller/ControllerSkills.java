@@ -32,25 +32,7 @@ public class ControllerSkills {
         List<Skills> list = skillsService.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
-    
-    @GetMapping("/detail/{id}")
-    public ResponseEntity<Skills> getById(@PathVariable("id") int id){
-        if(!skillsService.existsById(id))
-            return new ResponseEntity(new Mensaje("No existe"), HttpStatus.NOT_FOUND);
-        Skills skills = skillsService.getOne(id).get();
-        return new ResponseEntity(skills, HttpStatus.OK);
-    }
-    
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> delete(@PathVariable("id") int id) {
-        if (!skillsService.existsById(id)) {
-            return new ResponseEntity(new Mensaje("No existe"), HttpStatus.NOT_FOUND);
-        }
-        skillsService.delete(id);
-        return new ResponseEntity(new Mensaje("Eliminado"), HttpStatus.OK);
-    }
-    
-    @PostMapping("/create")
+      @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoSkills dtoski){
         if(StringUtils.isBlank(dtoski.getNombreSkill())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -64,7 +46,14 @@ public class ControllerSkills {
         return new ResponseEntity(new Mensaje("Habilidad agregada"), HttpStatus.OK);
     }
     
-    @PutMapping("/update/{id}")
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Skills> getById(@PathVariable("id") int id){
+        if(!skillsService.existsById(id))
+            return new ResponseEntity(new Mensaje("No existe"), HttpStatus.NOT_FOUND);
+        Skills skills = skillsService.getOne(id).get();
+        return new ResponseEntity(skills, HttpStatus.OK);
+    }
+      @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable("id")int id, @RequestBody dtoSkills dtoski){
         //Validar ID
         if(!skillsService.existsById(id)){
@@ -85,4 +74,13 @@ public class ControllerSkills {
         skillsService.save(skills);
         return new ResponseEntity(new Mensaje("Habilidad actualizada"), HttpStatus.OK);
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") int id) {
+        if (!skillsService.existsById(id)) {
+            return new ResponseEntity(new Mensaje("No existe"), HttpStatus.NOT_FOUND);
+        }
+        skillsService.delete(id);
+        return new ResponseEntity(new Mensaje("Eliminado"), HttpStatus.OK);
+    }
+
 }
