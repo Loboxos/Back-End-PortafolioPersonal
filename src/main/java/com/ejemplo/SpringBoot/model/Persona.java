@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-
 @Getter @Setter
 @Entity
 public class Persona {
@@ -28,8 +27,7 @@ public class Persona {
     public Persona(){
         
     }
-    public Persona(Long id,String nombre,String apellido,String img){
-        this.id=id;
+    public Persona(String nombre,String apellido,String img){
         this.nombre=nombre;
         this.apellido=apellido;
         this.img=img;
