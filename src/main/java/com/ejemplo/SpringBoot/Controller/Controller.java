@@ -40,7 +40,7 @@ public class Controller {
     public List<Persona>verPersonas(){
       return persoServ.list();
     }
-      @GetMapping("personas/lista")
+      @GetMapping("/personas/lista")
     public ResponseEntity<List<Persona>> list (){
         List<Persona> list = persoServ.list();
         return new ResponseEntity(list,HttpStatus.OK);
@@ -71,7 +71,7 @@ public class Controller {
         
         return new ResponseEntity(new Mensaje("Foto actualizada"), HttpStatus.OK);
     }
-      @GetMapping("/detail/{id}")
+      @GetMapping("/personas/detail/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id")int id){
        if(!persoServ.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
