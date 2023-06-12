@@ -6,6 +6,7 @@ import com.ejemplo.SpringBoot.model.Persona;
 import com.ejemplo.SpringBoot.security.Controller.Mensaje;
 import com.ejemplo.SpringBoot.service.PersonaService;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
   
     @Autowired
-   PersonaService persoServ;
+    PersonaService persoServ;
+    
     
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/new/persona")
@@ -72,15 +74,20 @@ public class Controller {
         
         return new ResponseEntity(new Mensaje("Foto actualizada"), HttpStatus.OK);
     }
-      @GetMapping("/personas/detail/{id}")
-    public ResponseEntity<Persona> getById(@PathVariable("id")int id){
-       if(!persoServ.existsById(id)){
-            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
-        }
-        
-        Persona persona = persoServ.getOne(id).get();
-        return new ResponseEntity(persona, HttpStatus.OK);
+   @GetMapping("/personas/detail/{id}")
+public ResponseEntity<?> getById(@PathVariable("id") int id) {
+    if (!persoServ.existsById(id)) {
+        return ResponseEntity.badRequest().body(new Mensaje("No existe el ID"));
     }
+    
+    Optional<Persona> persona = persoServ.getOne(id);
+    if (persona.isPresent()) {
+        return ResponseEntity.ok(persona.get());
+    } else {
+        return ResponseEntity.notFound().build();
+    }
+}
+
     
     @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
