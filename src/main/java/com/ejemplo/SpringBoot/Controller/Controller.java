@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/personas")
 @CrossOrigin(origins = "https://frontendprueba0912.web.app")
 public class Controller {
   
@@ -40,7 +41,7 @@ public class Controller {
     public List<Persona>verPersonas(){
       return persoServ.list();
     }
-      @GetMapping("/personas/lista")
+      @GetMapping("/lista")
     public ResponseEntity<List<Persona>> list (){
         List<Persona> list = persoServ.list();
         return new ResponseEntity(list,HttpStatus.OK);
@@ -72,7 +73,7 @@ public class Controller {
         
         return new ResponseEntity(new Mensaje("Foto actualizada"), HttpStatus.OK);
     }
-      @GetMapping("/personas/detail/{id}")
+      @GetMapping("/detail/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id")int id){
        if(!persoServ.existsById(id)){
             return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
