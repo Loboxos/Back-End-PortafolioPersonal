@@ -22,11 +22,11 @@ public class dtoSkills {
     
     //Getters & Setters
 
-    public String getNombreSkill() {
+    public String getNombreS() {
         return nombreS;
     }
 
-    public void setNombreSkill(String nombreS) {
+    public void setNombreS(String nombreS) {
         this.nombreS = nombreS;
     }
 

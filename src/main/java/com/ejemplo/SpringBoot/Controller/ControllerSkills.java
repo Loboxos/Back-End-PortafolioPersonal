@@ -34,13 +34,13 @@ public class ControllerSkills {
     }
       @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoSkills dtoski){
-        if(StringUtils.isBlank(dtoski.getNombreSkill())){
+        if(StringUtils.isBlank(dtoski.getNombreS())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
-            if(skillsService.existsByNombreSkill(dtoski.getNombreSkill())){
+            if(skillsService.existsByNombreSkill(dtoski.getNombreS())){
             return new ResponseEntity(new Mensaje("Habilidad existente"), HttpStatus.BAD_REQUEST);
     }
-        Skills skills = new Skills(dtoski.getNombreSkill(),dtoski.getPorcentaje());
+        Skills skills = new Skills(dtoski.getNombreS(),dtoski.getPorcentaje());
         skillsService.save(skills);
         
         return new ResponseEntity(new Mensaje("Habilidad agregada"), HttpStatus.OK);
@@ -60,15 +60,15 @@ public class ControllerSkills {
             return new ResponseEntity(new Mensaje("ID inexistente"), HttpStatus.BAD_REQUEST);
         //Comparar nombre Habilidad
         }
-        if(skillsService.existsByNombreSkill(dtoski.getNombreSkill()) && skillsService.getByNombreSkill(dtoski.getNombreSkill()).get().getId() != id){
+        if(skillsService.existsByNombreSkill(dtoski.getNombreS()) && skillsService.getByNombreSkill(dtoski.getNombreS()).get().getId() != id){
             return new ResponseEntity(new Mensaje("Habilidad existente"), HttpStatus.BAD_REQUEST);
         //No puede estar vacio 
         }
-        if(StringUtils.isBlank(dtoski.getNombreSkill())){
+        if(StringUtils.isBlank(dtoski.getNombreS())){
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         Skills skills = skillsService.getOne(id).get();
-        skills.setNombreSkill(dtoski.getNombreSkill());
+        skills.setNombreS(dtoski.getNombreS());
         skills.setPorcentaje(dtoski.getPorcentaje());
         
         skillsService.save(skills);

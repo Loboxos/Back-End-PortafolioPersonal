@@ -34,11 +34,11 @@ public class Skills {
         this.id = id;
     }
 
-    public String getNombreSkill() {
+    public String getNombreS() {
         return nombreS;
     }
 
-    public void setNombreSkill(String nombreSkill) {
+    public void setNombreS(String nombreS) {
         this.nombreS = nombreS;
     }
 
