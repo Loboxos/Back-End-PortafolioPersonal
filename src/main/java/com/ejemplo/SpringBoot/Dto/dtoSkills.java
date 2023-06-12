@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 public class dtoSkills {
        @NotBlank
-    private String nombreSkill;
+    private String nombreS;
     @NotBlank
     private int porcentaje;
     
@@ -15,19 +15,19 @@ public class dtoSkills {
     public dtoSkills() {
     }
 
-    public dtoSkills(String nombreSkill, int porcentaje) {
-        this.nombreSkill = nombreSkill;
+    public dtoSkills(String nombreS, int porcentaje) {
+        this.nombreS = nombreS;
         this.porcentaje = porcentaje;
     }
     
     //Getters & Setters
 
     public String getNombreSkill() {
-        return nombreSkill;
+        return nombreS;
     }
 
-    public void setNombreSkill(String nombreSkill) {
-        this.nombreSkill = nombreSkill;
+    public void setNombreSkill(String nombreS) {
+        this.nombreS = nombreS;
     }
 
 
