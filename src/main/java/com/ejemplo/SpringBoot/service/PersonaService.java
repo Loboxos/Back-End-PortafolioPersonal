@@ -13,16 +13,17 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class PersonaService {
 
-    @Autowired PersonaRepository persoRepo;
+    @Autowired 
+    PersonaRepository persoRepo;
     
   
     public List<Persona> list() {
        return persoRepo.findAll();
     }
- public Optional<Persona> getOne(int id){
+    public Optional<Persona> getOne(int id){
         return persoRepo.findById(id);
     }
-     public Optional<Persona> getByNmbre(String nombre){
+    public Optional<Persona> getByNmbre(String nombre){
         return persoRepo.findByNombre(nombre);
     }
     
@@ -33,7 +34,7 @@ public class PersonaService {
         persoRepo.deleteById(id);
     }
     
-  public boolean existsById(int id){
+    public boolean existsById(int id){
         return persoRepo.existsById(id);
     }
     

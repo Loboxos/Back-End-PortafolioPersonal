@@ -30,7 +30,12 @@ public class Controller {
   
     @Autowired
    PersonaService persoServ;
-    
+   
+     @GetMapping("/lista")
+    public ResponseEntity<List<Persona>> list (){
+        List<Persona> list = persoServ.list();
+        return new ResponseEntity(list,HttpStatus.OK);
+    }
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/new/persona")
     public void agregarPersona(@RequestBody Persona pers){
@@ -41,11 +46,7 @@ public class Controller {
     public List<Persona>verPersonas(){
       return persoServ.list();
     }
-      @GetMapping("/lista")
-    public ResponseEntity<List<Persona>> list (){
-        List<Persona> list = persoServ.list();
-        return new ResponseEntity(list,HttpStatus.OK);
-    }
+  
    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public void borrarPersona(@PathVariable int id){
