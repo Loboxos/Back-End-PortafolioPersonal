@@ -30,7 +30,12 @@ public class Controller {
   
     @Autowired
    PersonaService persoServ;
-   
+    
+    @GetMapping("/saludar")
+    public String saludar(){
+        return "bienvenidos a arg programa";
+    }
+    
      @GetMapping("/lista")
     public ResponseEntity<List<Persona>> list (){
         List<Persona> list = persoServ.list();
